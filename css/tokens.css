@@ -1,0 +1,70 @@
+/* =========================================================
+   Design tokens
+   Brand (raw values) → Alias (scales) → Mapped (usage)
+   Color goes Brand → Mapped directly.
+   ========================================================= */
+
+/* ---------- 1. Brand: raw values ---------- */
+:root {
+  /* Color: lights 100–300, darks 700–800 */
+  --white: #FFFFFF;
+  --beige-100: #FAF7F5;
+  --beige-200: #F7F4F0;
+  --beige-300: #EDEBE7;
+  --beige-700: #737170;
+  --beige-800: #5E5D5B;
+  --yellow-400: #E5C04F;
+  --blue-200: #A3D9FF;
+
+  /* Font */
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}
+
+/* ---------- 2. Alias: scales ---------- */
+:root {
+  /* border width */
+  --border-width-none: 0;
+  --border-width-sm: 1px;
+  --border-width-lg: 2px;
+
+  /* border radius */
+  --border-radius-none: 0;
+  --border-radius-sm: 2px;
+  --border-radius-md: 4px;
+  --border-radius-lg: 8px;
+
+  /* spacing (4px grid) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 20px;
+  --spacing-xl: 40px;
+}
+
+/* ---------- 3. Mapped: usage ---------- */
+:root {
+  /* Text */
+  --text-default: var(--beige-800);
+  --text-muted: var(--beige-700);
+
+  /* Accent (status dot) */
+  --accent-am: var(--yellow-400);
+  --accent-pm: var(--blue-200);
+
+  /* Icons */
+  --icon-default: var(--beige-700);
+  --icon-hover: var(--beige-800);
+
+  /* Surface */
+  --surface-page: var(--white);
+  --surface-card: var(--beige-100);      /* mockup shows beige cards; was white */
+  --surface-row-hover: var(--beige-100); /* also used for the open project row */
+  --surface-chip: var(--beige-200);
+
+  /* Border */
+  --border-default: var(--beige-300);    /* dividers, card outline, index box */
+
+  /* Font weight (Figma names) */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+}
