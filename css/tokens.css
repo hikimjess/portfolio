@@ -1,10 +1,10 @@
 /* =========================================================
    Design tokens
-   Brand (raw values) → Alias (scales) → Mapped (usage)
-   Color goes Brand → Mapped directly.
+   Raw (values) → Alias (scales) → Mapped (usage)
+   Color goes Raw → Mapped directly.
    ========================================================= */
 
-/* ---------- 1. Brand: raw values ---------- */
+/* ---------- 1. Raw: values ---------- */
 :root {
   /* Color: lights 100–300, darks 700–800 */
   --white: #FFFFFF;
