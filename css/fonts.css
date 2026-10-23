@@ -1,22 +1,22 @@
 /* =========================================================
-   Fonts: Geist Mono, self-hosted variable fonts (weights 100–900)
+   Fonts: Geist Mono and Instrument Sans, self-hosted variable fonts
    .woff2 is used by browsers; .ttf is the fallback.
    ========================================================= */
 
 @font-face {
-  font-family: "Geist Mono";
-  src: url("../assets/fonts/GeistMono-wght.woff2") format("woff2"),
-       url("../assets/fonts/GeistMono-wght.ttf") format("truetype");
+  font-family: "Instrument Sans";
+  src: url("../assets/fonts/InstrumentSans[wdth,wght].ttf") format("truetype");
   font-weight: 100 900;
+  font-stretch: 75% 100%;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Geist Mono";
-  src: url("../assets/fonts/GeistMono-Italic-wght.woff2") format("woff2"),
-       url("../assets/fonts/GeistMono-Italic-wght.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: italic;
+  src: url("../assets/fonts/GeistMono-wght.woff2") format("woff2"),
+       url("../assets/fonts/GeistMono-wght.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
   font-display: swap;
 }

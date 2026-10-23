@@ -1,0 +1,8 @@
+{
+  "liveServer.settings.root": "/",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "files.exclude": {
+    "**/.DS_Store": true
+  }
+}

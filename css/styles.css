@@ -58,60 +58,71 @@ button {
 
 /* h1: name in intro card */
 h1 {
-  font-size: 15px;
-  line-height: 18px;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-sm);
   letter-spacing: -0.005em;
   font-weight: var(--font-weight-medium);
 }
 
 /* h2: project titles */
 h2 {
-  font-size: 15px;
-  line-height: 18px;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-sm);
   letter-spacing: -0.005em;
   font-weight: var(--font-weight-regular);
+  color: var(--beige-700);
+  font-feature-settings: "ss02" 1;
+
 }
 
 /* h3: case study headings (Role, Team) */
 h3 {
-  font-size: 15px;
-  line-height: 18px;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-xs);
   letter-spacing: -0.005em;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
 }
 
 /* p: paragraphs, bio, captions */
 p {
-  font-size: 15px;
-  line-height: 18px;
-  letter-spacing: -0.02em;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-sm);
+  letter-spacing: -0.01em;
   font-weight: var(--font-weight-regular);
+  font-feature-settings: "ss02" 1;
 }
 
 /* Second paragraph in a case study gets an indent.
    Scoped so it doesn't hit cards, clock or footer. */
 .case-text p + p { text-indent: 4ch; }
 
-/* nav: header + footer links */
+/* nav links + clock typography */
 nav a,
-nav button {
-  font-size: 15px;
-  line-height: 15px;
-  letter-spacing: -0.005em;
+nav button,
+.clock {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-xs);
+  letter-spacing: -0.002em;
   font-weight: var(--font-weight-regular);
+  font-feature-settings: "ss02" 1;
 }
 
 /* label: chips, index numbers, counter, tooltip, © */
 .label {
-  font-size: 15px;
-  line-height: 15px;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-sm);
   letter-spacing: -0.01em;
   font-weight: var(--font-weight-regular);
-  color: var(--text-muted);
+  color: var(--beige-700);
 }
 
-.muted { color: var(--text-muted); }
+.muted { color: var(--beige-700); }
 
+.client {
+  color: var(--beige-800);
+}
 
 /* ---------- 3. Shared pieces ---------- */
 
@@ -149,8 +160,8 @@ nav button {
 
 /* Icons inside nav */
 .icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   flex: none;
   color: var(--icon-default);
 }
@@ -158,13 +169,14 @@ nav button {
 .nav-link {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
+  gap: var(--spacing-xs);
 }
 
 /* Carousel arrows stay inline SVG, sized separately */
 .carousel-button .icon {
   width: 12px;
   height: 12px;
+  border: var(--border-width-sm) solid var(--border-default);
 }
 
 /* Clock + status dot */
@@ -172,19 +184,27 @@ nav button {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
-  font-size: 15px;
-  line-height: 15px;
 }
 
 .status-dot {
-  width: 6px;
-  height: 6px;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.status-dot::before {
+  content: "";
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
   background: var(--accent-am);
 }
 
 /* The clock script sets data-period="am" or "pm" */
-.status-dot[data-period="pm"] { background: var(--accent-pm); }
+.status-dot[data-period="pm"]::before { background: var(--accent-pm); }
 
 /* Image placeholder: swap for <img> when assets are ready */
 .media-placeholder {
@@ -194,39 +214,41 @@ nav button {
   width: 100%;
   height: 100%;
   background: var(--beige-200);
-  color: var(--text-muted);
-  font-size: 13px;
+  color: var(--beige-700);
+  font-size: var(--font-size-sm);
 }
 
 
 /* ---------- 4. Sections ---------- */
 
 /* Header
-   Columns: logo | location + clock | Work | Info / Contact / Resume */
+   Columns: logo | location + clock | nav links */
 .site-header {
   display: grid;
   grid-template-columns: 30fr 38fr 32fr;
   align-items: start;
-  padding: var(--spacing-sm);
+  padding: var(--spacing-xs);
 }
 
 .logo img {
-  width: 106px;
+  width: 96px;
   height: auto;
 }
 
-.site-header .clock { padding-top: var(--spacing-xs); }
 
-.site-header nav ul {
+
+/* Work stays on the clock's row; the remaining links stack at the right */
+.site-header nav > ul {
   display: grid;
   grid-template-columns: 1fr auto;
-  row-gap: 5px;
-  padding-top: var(--spacing-xs);
+  align-items: start;
 }
 
-/* Work sits in its own column, the rest stack on the right */
-.site-header nav li:first-child { grid-column: 1; grid-row: 1; }
-.site-header nav li:not(:first-child) { grid-column: 2; justify-self: end; }
+.site-header nav .nav-links ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 
 /* Main content gutter */
 main {
@@ -284,8 +306,8 @@ main {
 .project-panel {
   display: grid;
   grid-template-columns: 55fr 45fr;
-  gap: var(--spacing-md);
-  padding: var(--spacing-md) var(--spacing-md) var(--spacing-lg) 64px;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-md) 64px;
 }
 
 /* Carousel */
@@ -327,15 +349,24 @@ main {
 
 .carousel figcaption .label { flex: none; }
 
+
 /* Case study text */
 .case-text {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
-  max-width: 400px;
+  justify-content: flex-start;
+  gap: var(--spacing-md);
+  max-width: 520px;
 }
 
-.case-text .overview {
+.case-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--spacing-xs);
+}
+
+.case:first-child {
   padding-bottom: var(--spacing-lg);
   border-bottom: var(--border-width-sm) solid var(--border-default);
 }
@@ -352,10 +383,10 @@ main {
 .experience {
   width: 100%;
   border-collapse: collapse;
-  font-size: 15px;
-  line-height: 18px;
-  letter-spacing: -0.02em;
-  color: var(--text-muted);
+  font-size: var(--font-size-lg);
+  line-height: 16px;
+  letter-spacing: -0.01em;
+  color: var(--beige-700);
 }
 
 .experience td {
@@ -409,9 +440,9 @@ main {
 }
 
 .object-caption p {
-  font-size: 13px;
+  font-size: var(--font-size-sm);
   line-height: 13px;
-  color: var(--text-muted);
+  color: var(--beige-700);
 }
 
 .object-caption .close {

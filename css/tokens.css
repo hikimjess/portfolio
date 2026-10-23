@@ -11,12 +11,13 @@
   --beige-100: #FAF7F5;
   --beige-200: #F7F4F0;
   --beige-300: #EDEBE7;
-  --beige-700: #737170;
+  --beige-700: #ABA9A6;
   --beige-800: #5E5D5B;
   --yellow-400: #E5C04F;
   --blue-200: #A3D9FF;
 
   /* Font */
+  --font-sans: "Instrument Sans", sans-serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
 }
 
@@ -64,7 +65,16 @@
   /* Border */
   --border-default: var(--beige-300);    /* dividers, card outline, index box */
 
-  /* Font weight (Figma names) */
-  --font-weight-regular: 400;
+  /* Font weight */
+  --font-weight-regular: 300;
   --font-weight-medium: 500;
+
+  /* Font size */
+  --font-size-sm: 0.75rem;
+  --font-size-lg: 0.813rem;
+
+  /* Line-height */
+  --line-height-xs: 1.0; 
+  --line-height-sm: 1.15;
+  --line-height-lg: 1.4;
 }
