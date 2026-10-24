@@ -66,7 +66,7 @@ h1 {
 
 /* h2: project titles */
 h2 {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-sm);
   line-height: var(--line-height-sm);
   letter-spacing: -0.005em;
   font-weight: var(--font-weight-regular);
@@ -86,10 +86,10 @@ h3 {
 /* p: paragraphs, bio, captions */
 p {
   font-family: var(--font-sans);
-  font-size: var(--font-size-lg);
-  line-height: var(--line-height-sm);
-  letter-spacing: -0.01em;
-  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-lg);
+  letter-spacing: 0;
+  font-weight: var(--font-weight-body);
   font-feature-settings: "ss02" 1;
 }
 
@@ -111,7 +111,7 @@ nav button,
 
 /* label: chips, index numbers, counter, tooltip, © */
 .label {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-sm);
   line-height: var(--line-height-sm);
   letter-spacing: -0.01em;
   font-weight: var(--font-weight-regular);
@@ -183,7 +183,6 @@ nav button,
 .clock {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-sm);
 }
 
 .status-dot {
@@ -237,6 +236,12 @@ nav button,
 
 
 
+/* Header list items: flex removes the invisible text line around each link,
+   so the links start at the very top, level with the clock */
+.site-header nav li {
+  display: flex;
+}
+
 /* Work stays on the clock's row; the remaining links stack at the right */
 .site-header nav > ul {
   display: grid;
@@ -248,6 +253,7 @@ nav button,
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  gap: var(--spacing-xs);
 }
 
 /* Main content gutter */
@@ -383,7 +389,7 @@ main {
 .experience {
   width: 100%;
   border-collapse: collapse;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-sm);
   line-height: 16px;
   letter-spacing: -0.01em;
   color: var(--beige-700);

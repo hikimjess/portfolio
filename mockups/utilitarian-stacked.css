@@ -1,0 +1,22 @@
+/* =========================================================
+   Stacked-label variation
+   Loaded AFTER utilitarian.css, so these rules override it.
+   Only the differences live here; everything else is shared.
+   ========================================================= */
+
+/* Text column a bit narrower: no label margin needed now */
+.panel {
+  grid-template-columns: minmax(0, 720px) minmax(0, 380px);   /* 340 → 380 */
+}
+
+/* Sections go back to normal blocks: label on top, text below */
+.story section,
+.credits > div {
+  display: block;
+}
+
+.panel .label {
+  display: block;
+  padding-top: 0;
+  margin-bottom: var(--spacing-xs);
+}

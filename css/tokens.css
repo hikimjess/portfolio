@@ -66,15 +66,17 @@
   --border-default: var(--beige-300);    /* dividers, card outline, index box */
 
   /* Font weight */
-  --font-weight-regular: 300;
+  --font-weight-regular: 300;  /* mono: light, so it sits back next to the sans */
+  --font-weight-body: 400;     /* sans: Instrument Sans' lightest */
   --font-weight-medium: 500;
 
   /* Font size */
   --font-size-sm: 0.75rem;
   --font-size-lg: 0.813rem;
+  --font-size-body: 0.844rem;  /* 13.5px, sans paragraphs */
 
   /* Line-height */
   --line-height-xs: 1.0; 
   --line-height-sm: 1.15;
-  --line-height-lg: 1.4;
+  --line-height-lg: 1.35;      /* body paragraphs */
 }

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jessica Kim · Product Designer (utilitarian mockup)</title>
+
+  <!-- Same fonts + tokens as the real site; only the layout CSS is new -->
+  <link rel="stylesheet" href="../css/fonts.css">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="utilitarian.css">
+</head>
+<body>
+
+  <!-- ================= Header (unchanged from index.html) ================= -->
+  <header class="site-header">
+    <a class="logo" href="#top" aria-label="Jess, home">
+      <img src="../assets/images/JESS_logo.svg" alt="" width="106" height="41">
+    </a>
+
+    <p class="clock">
+      <span>Based in CA</span>
+      <span class="status-dot" aria-hidden="true"></span>
+      <time class="js-clock-time">00:00:00 PM</time>
+    </p>
+
+    <nav aria-label="Main">
+      <ul>
+        <li>
+          <a class="nav-link" href="#work">
+            Work
+            <img class="icon" src="../assets/images/icon-folder%202.svg" alt="" width="18" height="18">
+          </a>
+        </li>
+        <li class="nav-links">
+          <ul>
+            <li>
+              <a class="nav-link" href="#about">
+                Info
+                <img class="icon" src="../assets/images/icon-smile%204.svg" alt="" width="18" height="18">
+              </a>
+            </li>
+            <li>
+              <button class="nav-link" type="button" data-email="you@example.com">
+                Contact
+                <img class="icon" src="../assets/images/icon-copy%202.svg" alt="" width="18" height="18">
+              </button>
+            </li>
+            <li>
+              <a class="nav-link" href="../assets/resume.pdf" download>
+                Resume
+                <img class="icon" src="../assets/images/icon-download%203.svg" alt="" width="18" height="18">
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <main id="top">
+
+    <!-- ================= Intro: no card, just text on the grid ================= -->
+    <section class="intro" aria-labelledby="intro-name">
+      <h1 id="intro-name">Jessica Kim</h1>
+      <p class="mono muted">Product Designer</p>
+      <p class="lede">I'm a product designer who brings craft and intention to every detail.</p>
+    </section>
+
+
+    <!-- ================= Work: an index list =================
+         Each row is a <details> element: the browser handles
+         open/close for free, no JavaScript needed.            -->
+    <section id="work" class="work" aria-labelledby="work-heading">
+
+      <h2 id="work-heading" class="work-head">Selected Work</h2>
+
+      <ol class="index">
+
+        <li>
+          <details open>
+            <summary class="row">
+              <span class="toggle" aria-hidden="true"></span>
+              <span class="num">01.</span>
+              <span class="name">Interactive product customizer and Shopify CMS</span>
+              <span class="client client--lingua-franca">Lingua Franca</span>
+              <span class="tags"><span class="chip">E-com</span><span class="chip">Web</span><span class="chip">UXUI</span></span>
+            </summary>
+
+            <div class="panel">
+              <!-- One loud line for the project -->
+              <p class="headline">Helping shoppers trust what they're buying before it's embroidered.</p>
+
+
+
+              <figure class="figure">
+                <div class="frame">
+                  <img src="../assets/images/image-test.jpg" width="720" height="480" loading="lazy"
+                       alt="Lingua Franca customizer: a pink sweater preview with the word 'forever' selected as a movable text box, next to options for text, embroidery style, beading and sizing.">
+
+                  <!-- Area outlined when you hover the underlined caption phrase.
+                       Position it over the part of the image the phrase describes. -->
+                  <span class="highlight" aria-hidden="true" style="left: 31.5%; top: 42%; width: 9.5%; height: 7.5%;"></span>
+
+                  <!-- Controls grouped in the bottom-right corner: reset, then prev / next -->
+                  <div class="controls">
+                    <button class="ctrl ctrl--reset" type="button" aria-label="Back to first image">
+                      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" aria-hidden="true"><path d="M2 6a4 4 0 1 0 1.2-2.85M2 1v3h3"/></svg>
+                    </button>
+                    <button class="ctrl ctrl--prev" type="button" aria-label="Previous image">
+                      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" aria-hidden="true"><path d="M11 6H1M5 2 1 6l4 4"/></svg>
+                    </button>
+                    <button class="ctrl ctrl--next" type="button" aria-label="Next image">
+                      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" aria-hidden="true"><path d="M1 6h10M7 2l4 4-4 4"/></svg>
+                    </button>
+                  </div>
+                </div>
+
+                <figcaption>
+                  <span class="count mono muted">1/4</span>
+                  <p>The <u class="hint">free-form canvas</u> lets shoppers position their text freely, choosing a lettering style and thread color as the preview updates in real time.</p>
+                </figcaption>
+              </figure>
+
+              <div class="story">
+                <section>
+                  <p>Lingua Franca was best known for their custom hand-embroidered sweaters, but ordering one online was limiting. Given that custom orders were final sale, not being able to preview the item before purchasing was problematic.</p>
+                </section>
+                <section>
+                  <h3 class="label">Outcome</h3>
+                  <p>In 6 months, we launched a custom Shopify app that gave shoppers a visual, interactive way to design their own pieces with a flexible CMS, just in time for the Mother's Day rush.</p>
+                </section>
+
+                <!-- Role + Team, under Solution for now -->
+                <dl class="credits">
+                  <div>
+                    <dt class="label">Role</dt>
+                    <dd><p>I designed both the customer-facing experience and the CMS, ran unmoderated remote testing with customers, partnering closely with engineers to make sure features were built as intended and adjusted the design as new constraints came up during development and QA.</p></dd>
+                  </div>
+                  <div>
+                    <dt class="label">Team</dt>
+                    <dd><p>Project Manager, Design Manager, Designer (me), 2 Engineers, QA Team</p></dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary class="row">
+              <span class="toggle" aria-hidden="true"></span>
+              <span class="num">02.</span>
+              <span class="name">Redesigning the made-to-order jewelry flow</span>
+              <span class="client client--stephanie-gottlieb">Stephanie Gottlieb</span>
+              <span class="tags"><span class="chip">E-com</span><span class="chip">Web</span><span class="chip">UXUI</span></span>
+            </summary>
+            <div class="panel"></div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary class="row">
+              <span class="toggle" aria-hidden="true"></span>
+              <span class="num">03.</span>
+              <span class="name">Making decentralized software approachable</span>
+              <span class="client client--clovyr">Clovyr</span>
+              <span class="tags"><span class="chip">Tech</span><span class="chip">MVP</span><span class="chip">Mobile</span></span>
+            </summary>
+            <div class="panel"></div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary class="row">
+              <span class="toggle" aria-hidden="true"></span>
+              <span class="num">04.</span>
+              <span class="name">Digitizing the management of fire extinguishers</span>
+              <span class="client client--keltron">Keltron</span>
+              <span class="tags"><span class="chip">IoT</span><span class="chip">MVP</span><span class="chip">Mobile</span><span class="chip">UXUI</span></span>
+            </summary>
+            <div class="panel"></div>
+          </details>
+        </li>
+
+        <li>
+          <details>
+            <summary class="row">
+              <span class="toggle" aria-hidden="true"></span>
+              <span class="num">05.</span>
+              <span class="name">Understanding audiences through research to inform design</span>
+              <span class="client client--cardozo">Cardozo University</span>
+              <span class="tags"><span class="chip">Edu</span><span class="chip">Web</span><span class="chip">Strategy</span></span>
+            </summary>
+            <div class="panel"></div>
+          </details>
+        </li>
+
+      </ol>
+    </section>
+
+
+    <!-- ================= About: plain text + dotted-leader rows ================= -->
+    <section id="about" class="about" aria-labelledby="about-heading">
+      <h2 id="about-heading" class="mono muted">[i] Info</h2>
+
+      <p class="bio">I'm a creative designer who understands customers, perspectives of a business from experience. Previously, I worked at Small Planet, an agency where I designed [need something] experiences collaborating closely with product, engineering, and marketing.</p>
+
+      <ul class="ledger">
+        <li><span>UXUI Designer</span><span class="leader"></span><span>Agency</span><span>3.5Y</span></li>
+        <li><span>Strategist Intern</span><span class="leader"></span><span>Agency</span><span>8M</span></li>
+        <li><span>Retail Sales</span><span class="leader"></span><span>New York, NY</span><span>5Y</span></li>
+        <li><span>Visual Merchandiser</span><span class="leader"></span><span>New York, NY</span><span>3Y</span></li>
+      </ul>
+    </section>
+
+
+    <!-- ================= Object collage: caption is plain text, no card ================= -->
+    <section class="collage" aria-label="Things I love">
+      <ul class="objects">
+        <li class="object object--burger"><span class="media-placeholder">Burger</span></li>
+        <li class="object object--tshirt">
+          <span class="media-placeholder">NY tee</span>
+          <p class="object-caption"><span class="mono">[x]</span> My dad was a self-taught graphic designer who once had a screen-printing business in NYC.</p>
+        </li>
+        <li class="object object--jar"><span class="media-placeholder"></span></li>
+        <li class="object object--serum"><span class="media-placeholder"></span></li>
+        <li class="object object--tube"><span class="media-placeholder"></span></li>
+        <li class="object object--bottle"><span class="media-placeholder"></span></li>
+        <li class="object object--tote"><span class="media-placeholder">Tote</span></li>
+      </ul>
+    </section>
+
+  </main>
+
+
+  <!-- ================= Footer ================= -->
+  <footer class="site-footer">
+    <p class="mono">Jessica Kim <span class="muted">Product Designer</span></p>
+    <p class="clock">
+      <span>Based in CA</span>
+      <span class="status-dot" aria-hidden="true"></span>
+      <time class="js-clock-time">00:00:00 PM</time>
+    </p>
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="../assets/resume.pdf" download>Resume</a></li>
+        <li><button type="button" data-email="you@example.com">Contact</button></li>
+        <li><a href="#about">Info</a></li>
+      </ul>
+    </nav>
+    <p class="mono muted copyright">©2026</p>
+  </footer>
+
+  <script src="../js/clock.js" defer></script>
+</body>
+</html>

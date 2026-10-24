@@ -1,0 +1,459 @@
+/* =========================================================
+   Utilitarian mockup
+   Idea: no cards or boxes. Structure comes from the grid,
+   text alignment, and dotted "leader" lines (like a table of
+   contents) instead of borders and fills.
+   1. Base   2. Type   3. Header (copied from styles.css)
+   4. Shared pieces   5. Sections
+   ========================================================= */
+
+
+/* ---------- 0. Client colors (Raw) ----------
+   Only used for the client dots. Move to tokens.css if you keep them. */
+:root {
+  --client-lingua-franca:      #F9CAC7;
+  --client-stephanie-gottlieb: #8086FF;
+  --client-clovyr:             #3ED692;
+  --client-keltron:            #EE6F76;
+  --client-cardozo:            #2E96D7;
+
+  /* A beige between 300 (#EDEBE7) and 700 (#ABA9A6), for dashed dividers.
+     Raw → Mapped, like tokens.css. Move both there if you keep them. */
+  --beige-400: #D6D4D0;
+  --border-divider: var(--beige-400);
+}
+
+
+/* ---------- 1. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--text-default);
+  background: var(--surface-page);
+}
+
+h1, h2, h3, p, ul, ol, figure, dl, dd { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+
+
+/* ---------- 2. Type ---------- */
+h1, h2 { font-size: var(--font-size-sm); font-weight: var(--font-weight-regular); }
+
+/* Sans is only for reading text */
+p {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-lg);
+  font-weight: var(--font-weight-body);
+}
+
+/* Helper: put a <p> back in mono */
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  font-weight: var(--font-weight-regular);
+}
+
+.muted { color: var(--text-muted); }
+
+
+/* ---------- 3. Header: same as styles.css ---------- */
+.site-header {
+  display: grid;
+  grid-template-columns: 30fr 38fr 32fr;
+  align-items: start;
+  padding: var(--spacing-xs);
+}
+.logo img { width: 96px; height: auto; }
+
+nav a, nav button, .clock {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-xs);
+  font-weight: var(--font-weight-regular);
+}
+.site-header nav li { display: flex; }
+.site-header nav > ul { display: grid; grid-template-columns: 1fr auto; align-items: start; }
+.site-header nav .nav-links ul { display: flex; flex-direction: column; align-items: flex-end; gap: var(--spacing-xs); }
+.nav-link { display: inline-flex; align-items: center; gap: var(--spacing-xs); }
+.icon { width: 16px; height: 16px; flex: none; }
+
+.clock { display: inline-flex; align-items: center; }
+.status-dot { width: 16px; height: 16px; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.status-dot::before { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--accent-am); }
+.status-dot[data-period="pm"]::before { background: var(--accent-pm); }
+
+
+/* ---------- 4. Shared pieces ---------- */
+
+/* Dotted leader: an empty span that stretches to fill the gap
+   and draws a dotted line along the text baseline */
+.leader {
+  flex: 1;
+  min-width: var(--spacing-md);
+  align-self: end;
+  margin: 0 var(--spacing-xs) 3px;
+  border-bottom: var(--border-width-sm) dotted var(--beige-700);
+}
+
+.media-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: var(--beige-200);
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+
+
+/* ---------- 5. Sections ---------- */
+
+/* Main uses the header's 3 columns, so content lines up with
+   the logo, the clock and the nav without any boxes */
+main {
+  display: grid;
+  grid-template-columns: 30fr 38fr 32fr;
+  padding: 0 var(--spacing-xs);
+}
+
+/* Intro: left-aligned, lined up with "Selected Work" below
+   (same 40px inset as the project list) */
+.intro {
+  grid-column: 1 / -1;
+  padding-left: var(--spacing-xl);
+  margin-top: 160px;
+  max-width: calc(340px + var(--spacing-xl));  /* 340px of text + the inset */
+}
+.intro .lede { margin-top: var(--spacing-md); }
+
+/* Work index: full width, with side padding */
+.work {
+  grid-column: 1 / -1;
+  margin-top: 140px;
+  padding: 0 var(--spacing-xl);
+}
+
+.work-head {
+  margin-bottom: var(--spacing-sm);
+  padding-inline: var(--spacing-md);   /* same inset as the rows */
+}
+
+/* Dividers: a tight dashed line above every project, plus one under the last.
+   border-style: dashed can't set the dash length, so the line is drawn
+   as a 1px-tall striped background instead: 2px dash, 2px gap. */
+.index,
+.index > li {
+  --dash: repeating-linear-gradient(
+    to right,
+    var(--border-divider) 0 2px,   /* beige-400 */
+    transparent 2px 4px
+  );
+}
+.index      { background: var(--dash) bottom / 100% 1px no-repeat; }
+
+/* Side padding inside every row (and the open project), so the
+   paper fill has room around the text. One variable keeps rows,
+   panel indent and the panel line in step. */
+.index { --row-inset: var(--spacing-md); }
+
+/* Open state: the open row sits on the paper fill */
+/* Two background layers: the dashed line on top, the paper fill underneath
+   (otherwise the fill would cover the line above the row) */
+details[open] > .row {
+  background:
+    var(--dash) top / 100% 1px no-repeat,
+    var(--surface-card);
+}
+/* Chips on the open row: outline one step darker so they hold up on the paper */
+details[open] > .row .chip { border-color: var(--border-divider); }
+.index > li { background: var(--dash) top    / 100% 1px no-repeat; }
+
+/* One row = [+] 01. Name   client   tags
+   The name column is a fixed 72ch (about 14ch wider than the longest
+   name, for breathing room), so the client column starts at the same
+   spot on every row */
+.row {
+  display: grid;
+  grid-template-columns: 4ch 4ch 72ch 22ch 1fr;
+  align-items: end;
+  padding: var(--spacing-sm) var(--row-inset);   /* 8px top/bottom, 16px sides */
+  cursor: pointer;
+  list-style: none;              /* hides the default ▶ marker */
+}
+.row::-webkit-details-marker { display: none; }
+
+.row .client {
+  display: flex;
+  align-items: center;
+  color: var(--text-default);   /* same as the project name */
+}
+
+/* Client dot: same size as the nav's status dot
+   (a 4px circle centered in a 16px box: 6px + 4px + 6px) */
+.row .client::before {
+  content: "";
+  flex: none;
+  width: 4px;
+  height: 4px;
+  margin-left: 6px;
+  margin-right: var(--spacing-sm);   /* 8px to the name (was 6px) */
+  border-radius: 50%;
+  background: var(--client-color);
+}
+
+/* Each client sets its own --client-color */
+.client--lingua-franca      { --client-color: var(--client-lingua-franca); }
+.client--stephanie-gottlieb { --client-color: var(--client-stephanie-gottlieb); }
+.client--clovyr             { --client-color: var(--client-clovyr); }
+.client--keltron            { --client-color: var(--client-keltron); }
+.client--cardozo            { --client-color: var(--client-cardozo); }
+.row .tags {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-xs);
+}
+
+/* Chip: "paper tag" — a light fill inside a hairline border */
+.chip {
+  padding: 1px var(--spacing-xs);
+  background: var(--surface-card);              /* beige-100 */
+  border: var(--border-width-sm) solid var(--border-default);  /* beige-300 */
+  border-radius: var(--border-radius-sm);       /* 2px */
+  color: var(--text-muted);                     /* lighter than the row text */
+}
+
+/* [+] closed, [-] open: CSS reads the open attribute */
+.toggle::before { content: "[+]"; color: var(--text-muted); }
+details[open] > .row .toggle::before { content: "[-]"; color: var(--text-default); }
+
+
+/* Case study panel: indented to line up under the project name
+   Row 1: headline across both columns
+   Row 2: image (capped at 720px) | text (capped at 460px)        */
+.panel {
+  display: grid;
+  grid-template-columns: minmax(0, 720px) minmax(0, 460px);  /* text col 420 → 460 (≈380px of text + label margin) */
+  column-gap: var(--spacing-lg);   /* image ↔ text: 40 → 20px */
+  row-gap: var(--spacing-md);      /* headline ↔ image: 20 → 16px */
+  align-items: start;
+  padding: var(--spacing-md) var(--row-inset) var(--spacing-lg) calc(8ch + var(--row-inset));
+}
+.panel:empty { display: none; }
+
+/* Dashed line above the project content, starting at the same
+   indent as the headline (the panel's 8ch left padding) */
+.panel {
+  background: var(--dash) calc(8ch + var(--row-inset)) 0 / calc(100% - 8ch - var(--row-inset)) 1px no-repeat;
+}
+
+/* Display size: only used here for now.
+   Move it into tokens.css if you keep it. */
+.panel { --font-size-display: 1.75rem; }   /* 28px */
+
+.headline {
+  grid-column: 1 / -1;
+  max-width: 30ch;
+  font-size: var(--font-size-display);
+  line-height: var(--line-height-sm);
+  letter-spacing: -0.015em;  /* was -0.01em */
+}
+
+/* Image frame: everything inside is positioned against it */
+.frame {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+.frame .media-placeholder { position: absolute; inset: 0; }
+.frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* fills the 3:2 frame; crops if an image isn't 3:2 */
+}
+
+/* Image controls: one row in the bottom-right corner
+   [reset]   [←] [→]
+   8px from the image edges, 8px between buttons,
+   28px (one button width) between reset and ←      */
+.controls {
+  position: absolute;
+  right: var(--spacing-sm);
+  bottom: var(--spacing-sm);
+  display: flex;
+  gap: var(--spacing-sm);
+}
+.ctrl--reset { margin-right: var(--spacing-lg); }   /* 8px gap + 20px = 28px */
+
+/* Square icon buttons */
+.ctrl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--surface-page);
+  border: var(--border-width-sm) solid var(--border-default);
+  border-radius: var(--border-radius-sm);
+  color: var(--icon-default);
+}
+.ctrl:hover { color: var(--icon-hover); }
+.ctrl svg { width: 12px; height: 12px; }
+
+/* Highlight box: hidden until the caption phrase is hovered */
+.highlight {
+  position: absolute;
+  border: var(--border-width-sm) dashed var(--text-default);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+/* :has() lets the figure react to something inside its caption:
+   "if the .hint inside me is hovered, show my .highlight". No JS. */
+.figure:has(.hint:hover) .highlight { opacity: 1; }
+
+.figure figcaption {
+  display: grid;
+  grid-template-columns: auto 1fr;    /* [1/4] | caption */
+  column-gap: var(--spacing-sm);
+  align-items: start;
+  margin-top: var(--spacing-xs);
+  padding-right: var(--spacing-sm);   /* right only; left edge lines up with the image */
+}
+
+/* Image counter in brackets: [1/4]. Brackets come from CSS.
+   Same type settings as the caption. */
+.figure .count {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-lg);   /* was 1.15 from .mono; caption uses 1.35 */
+
+}
+.count::before { content: "["; }
+.count::after  { content: "]"; }
+/* Caption in mono, like the other small labels on the page */
+.figure figcaption p {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-lg);
+  color: var(--text-muted);
+}
+
+.hint {
+  color: var(--text-default);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  cursor: default;
+}
+
+/* Hanging labels: each section is a 2-column grid,
+   label in a narrow left column, text in the right.
+   Every paragraph starts at the same left edge. */
+.story section,
+.credits > div {
+  display: grid;
+  grid-template-columns: 10ch 1fr;
+  column-gap: var(--spacing-sm);
+}
+/* A section with no label: text spans both columns */
+.story section > p:only-child { grid-column: 1 / -1; }
+
+.panel .label {
+  padding-top: 3px;            /* nudges the mono label onto the sans text's first line */
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-sm);
+  color: var(--text-muted);
+}
+
+/* Credits: Role + Team stacked under Solution, same rhythm as the sections */
+.credits {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+.credits p { font-size: var(--font-size-lg); }   /* 13px, a half step down */
+
+/* Text column: Overview / Problem / Solution, no lines */
+.story {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* About: back in the clock column */
+.about {
+  grid-column: 2;
+  margin-top: 140px;
+  max-width: 430px;
+}
+.about h2 { margin-bottom: var(--spacing-md); }
+.about .bio { margin-bottom: var(--spacing-xl); }
+
+/* Role ........ Location   Years  (location + years are fixed columns) */
+.ledger li {
+  display: grid;
+  grid-template-columns: max-content 1fr 14ch 5ch;
+  padding: 2px 0;
+}
+.ledger li span:last-child { text-align: right; }
+
+/* Collage: same objects, caption is just text */
+.collage { grid-column: 1 / -1; margin-top: var(--spacing-xl); }
+.objects { display: flex; align-items: flex-end; justify-content: flex-end; gap: var(--spacing-lg); }
+.object { position: relative; }
+.object--burger { width: 110px; height: 90px; }
+.object--tshirt { width: 180px; height: 220px; }
+.object--jar    { width: 60px;  height: 40px; }
+.object--serum  { width: 40px;  height: 90px; }
+.object--tube   { width: 50px;  height: 140px; }
+.object--bottle { width: 34px;  height: 140px; }
+.object--tote   { width: 160px; height: 240px; }
+
+.object-caption {
+  position: absolute;
+  bottom: calc(100% + var(--spacing-sm));
+  right: 30%;
+  width: 220px;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  color: var(--text-muted);
+}
+
+/* Footer: same columns as the header */
+.site-footer {
+  display: grid;
+  grid-template-columns: 30fr 38fr 22fr 10fr;
+  align-items: center;
+  padding: var(--spacing-lg) var(--spacing-xs) var(--spacing-xs);
+}
+.site-footer nav ul { display: flex; gap: var(--spacing-lg); }
+.site-footer .copyright { justify-self: end; }
+
+
+/* ---------- Small screens ---------- */
+@media (max-width: 760px) {
+  .site-header, .site-footer { grid-template-columns: 1fr 1fr; row-gap: var(--spacing-md); }
+  main { grid-template-columns: 1fr; padding: 0 var(--spacing-sm); }
+  .intro, .about { grid-column: 1; }
+  .row { grid-template-columns: 4ch 4ch 1fr; row-gap: 2px; }
+  .row .tags, .row .client { grid-column: 3; text-align: left; justify-content: flex-start; }
+  .panel { grid-template-columns: 1fr; padding-left: 0; }
+  .headline { font-size: 1.375rem; }
+  .objects { flex-wrap: wrap; justify-content: flex-start; }
+}
